@@ -24,11 +24,10 @@ This extension does **not** include built-in ad-blocking features. We explicitly
 
 ## Install
 
-1. Open Chrome/Helium -> chrome://extensions/
+1. Open your Chromium-based browser and head to Extensions
 2. Enable **Developer mode** (top-right toggle)
-3. Click **Load unpacked**
-4. Select this youtube-tv-extension folder
-5. Navigate to **youtube.com/tv** - enjoy the TV UI!
+3. Drag and drop the .crx file to the Extensions
+4. Navigate to **youtube.com/tv** - enjoy the TV UI!
 
 ## Performance
 

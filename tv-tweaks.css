@@ -1,0 +1,51 @@
+/* YouTube TV Mode — Lightweight CSS tweaks for Leanback in a desktop browser */
+
+/* Hide any "open in app" or "use a supported device" banners */
+.ytlr-device-not-supported,
+.ytlr-unsupported-banner,
+[class*="unsupported"],
+[class*="not-supported"] {
+  display: none !important;
+}
+
+/* Smooth scrolling for keyboard/mouse navigation */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure the TV UI fills the viewport */
+body, html {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #111 !important;
+}
+
+/* Remove Leanback focus borders/outlines */
+*:focus,
+*:focus-visible,
+*:focus-within,
+.focused,
+[focused],
+.ytlr-tile-renderer--focused,
+.ytlr-tile-renderer:focus,
+.ytlr-surface-button--focused,
+.ytlr-surface-button:focus,
+[class*="focused"],
+[class*="--focused"],
+[class*="button"]:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  -webkit-outline: none !important;
+}
+
+/* Disable pointer cursor override — keep the TV feel */
+* {
+  cursor: default !important;
+}
+a, button, [role="button"], [tabindex] {
+  cursor: pointer !important;
+}

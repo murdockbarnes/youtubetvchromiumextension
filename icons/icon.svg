@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#16213e"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="20" fill="url(#bg)"/>
+  <!-- TV screen -->
+  <rect x="18" y="24" width="92" height="58" rx="6" fill="none" stroke="#e0e0e0" stroke-width="4"/>
+  <!-- TV stand -->
+  <line x1="44" y1="88" x2="84" y2="88" stroke="#e0e0e0" stroke-width="4" stroke-linecap="round"/>
+  <line x1="64" y1="82" x2="64" y2="88" stroke="#e0e0e0" stroke-width="3"/>
+  <!-- Play button -->
+  <polygon points="52,40 52,66 74,53" fill="#FF0000"/>
+  <!-- TV label -->
+  <text x="64" y="108" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="16" fill="#aaa">TV</text>
+</svg>

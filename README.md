@@ -1,6 +1,6 @@
-# YouTube TV for Chromium-based Browsers
+﻿# YouTube TV Mode - Chrome Extension
 
-A lightweight Chromium-based extension that forces YouTube's **Leanback (TV) UI** when you visit youtube.com/tv, injects Xbox/PlayStation controller support, and forces maximum 4K playback.
+A lightweight Chromium extension that forces YouTube's **Leanback (TV) UI** when you visit youtube.com/tv, injects Xbox/PlayStation controller support, and forces maximum 4K playback.
 
 ## How It Works
 
@@ -24,8 +24,32 @@ This extension does **not** include built-in ad-blocking features. We explicitly
 
 ## Install
 
-1. Open any Chromium-based browsers and head to Extensions
+1. Open Chrome/Helium -> chrome://extensions/
 2. Enable **Developer mode** (top-right toggle)
 3. Click **Load unpacked**
 4. Select this youtube-tv-extension folder
 5. Navigate to **youtube.com/tv** - enjoy the TV UI!
+
+## File Structure
+
+`
+youtube-tv-extension/
+├── manifest.json      # Manifest V3 config
+├── background.js      # Service worker (toggle state)
+├── content.js         # UA patch + redirect guard
+├── gamepad.js         # Controller input mapping & Toast UI
+├── inject-4k.js       # 4K & MediaCapabilities override
+├── tv-tweaks.css      # Viewport & banner fixes
+├── rules.json         # declarativeNetRequest UA rules
+├── popup.html/js      # Toolbar popup UI
+└── icons/             # Extension icons
+`
+
+## Performance
+
+- **declarativeNetRequest** handles UA spoofing at the network layer - no JS overhead per request.
+- Uses a Manifest V3 service worker that sleeps when inactive.
+
+## Credits & Acknowledgements
+
+- **Scott Allan:** Creator and lead developer. Engineered the custom Manifest V3 architecture, 4K media overrides, and the seamless Xbox/PlayStation controller integration for desktop browsers.

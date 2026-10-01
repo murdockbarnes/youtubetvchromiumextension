@@ -1,0 +1,66 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube TV for Chromium-based Browsers",
+  "version": "1.0.0",
+  "description": "A lightweight Chromium-based extension that forces YouTube's Leanback (TV) UI when you visit youtube.com/tv.",
+  "permissions": [
+    "declarativeNetRequest",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.youtube.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/tv*"
+      ],
+      "js": [
+        "content.js",
+        "gamepad.js",
+        "quality4k.js",
+        "hd-thumbnails.js"
+      ],
+      "css": [
+        "tv-tweaks.css"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "tv_ua_rules",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "inject-ua.js",
+        "inject-4k.js"
+      ],
+      "matches": [
+        "*://*.youtube.com/*"
+      ]
+    }
+  ]
+}

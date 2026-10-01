@@ -174,15 +174,25 @@
     }, 3000);
   }
 
+  
+  function getFriendlyName(id) {
+    id = id.toLowerCase();
+    if (id.includes('045e') || id.includes('xbox')) return 'Xbox Controller';
+    if (id.includes('054c:0ce6') || id.includes('dualsense')) return 'PS5 DualSense';
+    if (id.includes('054c') || id.includes('dualshock')) return 'PlayStation Controller';
+    if (id.includes('nintendo') || id.includes('pro controller')) return 'Nintendo Switch Pro';
+    return id.split('(')[0].trim();
+  }
+
   window.addEventListener("gamepadconnected", (e) => {
     console.log("[YT TV Mode] Controller: " + e.gamepad.id);
-    showToast(`Controller connected: ${e.gamepad.id}`, "🎮");
+    showToast(`${getFriendlyName(e.gamepad.id)} connected`, "\uD83C\uDFAE");
     startPolling();
   });
 
   window.addEventListener("gamepaddisconnected", (e) => {
     console.log("[YT TV Mode] Controller disconnected: " + e.gamepad.id);
-    showToast(`Controller disconnected`, "🎮");
+    showToast(`${getFriendlyName(e.gamepad.id)} disconnected`, "\uD83C\uDFAE");
   });
 
   if (navigator.getGamepads().some((g) => g !== null)) startPolling();

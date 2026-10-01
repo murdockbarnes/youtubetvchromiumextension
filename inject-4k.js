@@ -62,6 +62,7 @@
             body.context.client.screenHeightPoints = 2160;
             body.context.client.screenPixelDensity = 1;
             body.context.client.screenDensityFloat = 1;
+
           }
           init.body = JSON.stringify(body);
         }

@@ -42,7 +42,9 @@
     },
     "condition": {
       "urlFilter": "||youtube.com/api/*",
-      "initiatorDomains": ["youtube.com"],
+      "initiatorDomains": [
+        "youtube.com"
+      ],
       "resourceTypes": [
         "xmlhttprequest"
       ]

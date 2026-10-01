@@ -34,3 +34,7 @@ This extension does **not** include built-in ad-blocking features. We explicitly
 
 - **declarativeNetRequest** handles UA spoofing at the network layer - no JS overhead per request.
 - Uses a Manifest V3 service worker that sleeps when inactive.
+
+## Credits & Acknowledgements
+
+- **Scott Allan:** Creator and lead developer. Engineered the custom Manifest V3 architecture, 4K media overrides, and the seamless Xbox/PlayStation controller integration for desktop browsers.

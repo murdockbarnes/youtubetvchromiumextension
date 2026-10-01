@@ -1,19 +1,22 @@
 // Injected into page's MAIN world via web_accessible_resources
-// Forces 4K 60fps playback capabilities
+// Forces high quality playback capabilities
 
 (function(){
   "use strict";
 
-  // 1. Override screen properties to report 4K
+  // 1. Override screen properties and dynamically spoof devicePixelRatio so (innerWidth * ratio) >= 3840
   try {
     Object.defineProperty(screen, 'width',  { get: () => 3840, configurable: true });
     Object.defineProperty(screen, 'height', { get: () => 2160, configurable: true });
     Object.defineProperty(screen, 'availWidth',  { get: () => 3840, configurable: true });
     Object.defineProperty(screen, 'availHeight', { get: () => 2160, configurable: true });
-    Object.defineProperty(window, 'devicePixelRatio', { get: () => 1, configurable: true });
+    
+    const actualWidth = window.innerWidth || 1920;
+    const fakeRatio = Math.max(1, 3840 / actualWidth);
+    Object.defineProperty(window, 'devicePixelRatio', { get: () => fakeRatio, configurable: true });
   } catch(e) {}
 
-  // 2. Override MediaSource to support all 4K codecs
+  // 2. Override MediaSource to support all 4K codecs (including AV1)
   if (typeof MediaSource !== 'undefined') {
     const origIsTypeSupported = MediaSource.isTypeSupported.bind(MediaSource);
     MediaSource.isTypeSupported = function(mimeType) {
@@ -62,6 +65,9 @@
             body.context.client.screenHeightPoints = 2160;
             body.context.client.screenPixelDensity = 1;
             body.context.client.screenDensityFloat = 1;
+
+            if (!body.context.client.tvAppInfo) body.context.client.tvAppInfo = {};
+            body.context.client.tvAppInfo.supportedResolutions = ["1080p", "1440p", "2160p", "4K"];
           }
           init.body = JSON.stringify(body);
         }

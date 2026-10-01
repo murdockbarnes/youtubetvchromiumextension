@@ -8,7 +8,7 @@
         {
           "header": "User-Agent",
           "operation": "set",
-          "value": "Mozilla/5.0 (Linux; Android 12) Cobalt/22.2.3-gold (PS4)"
+          "value": "Mozilla/5.0 (Linux; Android 12) Cobalt/22.2.3-gold (PS5)"
         }
       ]
     },
@@ -36,13 +36,15 @@
         {
           "header": "User-Agent",
           "operation": "set",
-          "value": "Mozilla/5.0 (Linux; Android 12) Cobalt/22.2.3-gold (PS4)"
+          "value": "Mozilla/5.0 (Linux; Android 12) Cobalt/22.2.3-gold (PS5)"
         }
       ]
     },
     "condition": {
       "urlFilter": "||youtube.com/api/*",
-      "initiatorDomains": ["youtube.com"],
+      "initiatorDomains": [
+        "youtube.com"
+      ],
       "resourceTypes": [
         "xmlhttprequest"
       ]

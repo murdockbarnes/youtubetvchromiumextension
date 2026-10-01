@@ -66,8 +66,11 @@
             body.context.client.screenPixelDensity = 1;
             body.context.client.screenDensityFloat = 1;
 
+<<<<<<< HEAD
             if (!body.context.client.tvAppInfo) body.context.client.tvAppInfo = {};
             body.context.client.tvAppInfo.supportedResolutions = ["1080p", "1440p", "2160p", "4K"];
+=======
+>>>>>>> 09710598623660ee9a7199976ef3b3faef899058
           }
           init.body = JSON.stringify(body);
         }

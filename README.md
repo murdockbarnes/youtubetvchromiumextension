@@ -1,4 +1,4 @@
-# YouTube TV Mode - Chrome Extension
+# YouTube TV for Chromium-based Browsers
 
 A lightweight Chromium extension that forces YouTube's **Leanback (TV) UI** when you visit youtube.com/tv, injects Xbox/PlayStation controller support, and forces maximum 4K playback.
 

@@ -24,7 +24,7 @@ This extension does **not** include built-in ad-blocking features. We explicitly
 
 ## Install
 
-1. Open Chrome/Helium -> chrome://extensions/
+1. Open any Chromium-based browsers and head to Extensions
 2. Enable **Developer mode** (top-right toggle)
 3. Click **Load unpacked**
 4. Select this youtube-tv-extension folder

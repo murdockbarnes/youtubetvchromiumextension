@@ -1,26 +1,51 @@
-# YouTube TV Desktop (Custom Build v1.0.6)
+# YouTube TV Mode - Chrome Extension
 
-A dedicated, ad-free desktop client for YouTube's TV interface (Leanback), engineered for seamless 1080p to 4K media playback and full controller support.
+A lightweight Chromium extension that forces YouTube's **Leanback (TV) UI** when you visit youtube.com/tv, injects Xbox/PlayStation controller support, and forces maximum 4K playback.
 
-## Features \& Customizations
+## How It Works
 
-* **1080p/4K DRM Playback:** Uses a custom Electron engine (Castlabs) to bypass YouTube's Widevine L3 restrictions that normally cap desktop extensions at 720p.
-* **Double-Layer Ad-Skipper:**
+YouTube serves its TV/Leanback interface based on the browser's User-Agent string. This extension:
 
-  * Network-level blocking powered by the Ghostery engine.
-  * Zero-flash DOM Ad-Skipper that instantly fast-forwards and mutes unskippable server-injected ads in milliseconds.
-* **Enhanced Controller Support:** Perfectly scaled toast notifications for 1080p/4K TVs with friendly hardware parsing (e.g., identifies "Xbox Controller" or "PlayStation 5 DualSense" instead of raw HID strings).
-* **Cinematic Default:** Automatically launches into borderless full screen (toggleable via F11).
+1. **Spoofs the User-Agent** to a Samsung Tizen Smart TV via declarativeNetRequest (zero-overhead, runs at the network layer)
+2. **Patches 
+avigator.userAgent** in the page context so YouTube's JavaScript also detects a TV browser
+3. **Hides "unsupported device" banners** and optimizes the viewport for fullscreen TV UI
+4. **Forces 4K 60fps Playback** by overriding MediaCapabilities and fetch requests
+5. **Gamepad Integration** seamlessly maps connected Xbox/PlayStation controllers to TV UI navigation
 
-## Credits \& Acknowledgements
+## Note on Ad-Blocking (Why it's excluded)
 
-This customized build stands on the shoulders of several fantastic open-source projects. Due credit goes to:
+This extension does **not** include built-in ad-blocking features. We explicitly chose not to implement ad-blocking natively for two critical reasons:
 
-* **Marcos Rodríguez Yáclamo (@marcosrg9):** For creating the original base YouTube TV Electron wrapper that this project was forked and heavily modified from.
-* **Castlabs:** For their specialized DRM-enabled Electron builds.
-* **Ghostery:** For the underlying @ghostery/adblocker-electron tracking and blocking network engine.
+1. **Manifest V3 Constraints:** This extension is built using modern Manifest V3 standards. MV3 significantly restricts the background network interception (webRequest API) that ad-blockers historically relied on. While declarativeNetRequest exists, maintaining a complex, dynamic database of ad-filter rules natively inside this extension is outside its scope and would dramatically bloat performance.
+2. **YouTube's Server-Side Ads (SSAI):** YouTube increasingly stitches ads directly into the video stream. Attempting to block these streams aggressively often results in the video player breaking entirely (e.g., infinite buffering or black screens).
 
-## Installation
+**Recommendation:** For an ad-free experience, simply install a dedicated, purpose-built adblocker (like **uBlock Origin Lite** or **AdBlock**) alongside this extension. They will work together perfectly.
 
-Simply run YouTube TV Setup 1.0.6.exe. The app will install and automatically launch in full screen.
+## Install
 
+1. Open Chrome/Helium -> chrome://extensions/
+2. Enable **Developer mode** (top-right toggle)
+3. Click **Load unpacked**
+4. Select this youtube-tv-extension folder
+5. Navigate to **youtube.com/tv** - enjoy the TV UI!
+
+## File Structure
+
+`
+youtube-tv-extension/
+├── manifest.json      # Manifest V3 config
+├── background.js      # Service worker (toggle state)
+├── content.js         # UA patch + redirect guard
+├── gamepad.js         # Controller input mapping & Toast UI
+├── inject-4k.js       # 4K & MediaCapabilities override
+├── tv-tweaks.css      # Viewport & banner fixes
+├── rules.json         # declarativeNetRequest UA rules
+├── popup.html/js      # Toolbar popup UI
+└── icons/             # Extension icons
+`
+
+## Performance
+
+- **declarativeNetRequest** handles UA spoofing at the network layer - no JS overhead per request.
+- Uses a Manifest V3 service worker that sleeps when inactive.

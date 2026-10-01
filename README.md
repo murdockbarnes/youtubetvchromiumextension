@@ -30,21 +30,6 @@ This extension does **not** include built-in ad-blocking features. We explicitly
 4. Select this youtube-tv-extension folder
 5. Navigate to **youtube.com/tv** - enjoy the TV UI!
 
-## File Structure
-
-`
-youtube-tv-extension/
-├── manifest.json      # Manifest V3 config
-├── background.js      # Service worker (toggle state)
-├── content.js         # UA patch + redirect guard
-├── gamepad.js         # Controller input mapping & Toast UI
-├── inject-4k.js       # 4K & MediaCapabilities override
-├── tv-tweaks.css      # Viewport & banner fixes
-├── rules.json         # declarativeNetRequest UA rules
-├── popup.html/js      # Toolbar popup UI
-└── icons/             # Extension icons
-`
-
 ## Performance
 
 - **declarativeNetRequest** handles UA spoofing at the network layer - no JS overhead per request.

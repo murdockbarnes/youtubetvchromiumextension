@@ -32,7 +32,7 @@ This extension does **not** include built-in ad-blocking features. We explicitly
 
 ## File Structure
 
-`
+
 youtube-tv-extension/
 ├── manifest.json      # Manifest V3 config
 ├── background.js      # Service worker (toggle state)
@@ -43,7 +43,7 @@ youtube-tv-extension/
 ├── rules.json         # declarativeNetRequest UA rules
 ├── popup.html/js      # Toolbar popup UI
 └── icons/             # Extension icons
-`
+
 
 ## Performance
 
